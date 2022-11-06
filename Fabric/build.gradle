@@ -13,6 +13,15 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":Common")
+
+    modImplementation("com.github.apace100:origins-fabric:${origins_fabric_version}") {
+        exclude group: "com.terraformersmc"
+    }
+
+    modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
+        exclude group: "net.fabricmc.fabric-api"
+        exclude group: "com.terraformersmc"
+    })
 }
 
 loom {

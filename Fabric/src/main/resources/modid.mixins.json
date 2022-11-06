@@ -6,7 +6,7 @@
     "mixins": [
     ],
     "client": [
-      "ExampleMixin"
+      "com.possible_triangle.origins_compat.mixin.ExampleMixin"
     ],
     "injectors": {
       "defaultRequire": 1

@@ -1,6 +1,6 @@
-package com.example.examplemod.platform;
+package com.possible_triangle.origins_compat.platform;
 
-import com.example.examplemod.platform.services.IPlatformHelper;
+import com.possible_triangle.origins_compat.platform.services.IPlatformHelper;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 

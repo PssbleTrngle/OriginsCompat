@@ -1,4 +1,4 @@
-package com.example.examplemod.platform.services;
+package com.possible_triangle.origins_compat.platform.services;
 
 public interface IPlatformHelper {
 

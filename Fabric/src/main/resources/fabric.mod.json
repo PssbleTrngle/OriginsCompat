@@ -19,7 +19,7 @@
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.example.examplemod.ExampleMod"
+        "com.possible_triangle.origins_compat.FabricEntrypoint"
       ]
     },
     "mixins": [

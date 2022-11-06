@@ -1,6 +1,6 @@
-package com.example.examplemod.platform;
+package com.possible_triangle.origins_compat.platform;
 
-import com.example.examplemod.platform.services.IPlatformHelper;
+import com.possible_triangle.origins_compat.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatformHelper implements IPlatformHelper {
