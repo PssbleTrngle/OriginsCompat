@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = 'LGPL'
+
+[[mods]]
+modId = "origins_compat"
+version = "${file.jarVersion}"
+displayName = "Origins Compat"
+authors = "possible_triangle"
+description = ''''''
+
+[[dependencies.origins_compat]]
+modId = "forge"
+mandatory = true
+versionRange = "[40.1.60,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.origins_compat]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.origins_compat]]
+modId = "origins"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
