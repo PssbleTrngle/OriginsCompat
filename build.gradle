@@ -1,18 +1,32 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
     }
 }
+
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id "com.modrinth.minotaur" version "2.+"
+}
+
 apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-archivesBaseName = "${mod_name}-forge-${minecraft_version}"
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "${project.mod_id}.refmap.json"
+}
+
+archivesBaseName = mod_id
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 java.withSourcesJar()
@@ -20,7 +34,7 @@ java.withJavadocJar()
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
-    
+
     if (project.hasProperty('forge_ats_enabled') && project.findProperty('forge_ats_enabled').toBoolean()) {
         // This location is hardcoded in Forge and can not be changed.
         // https://github.com/MinecraftForge/MinecraftForge/blob/be1698bb1554f9c8fa2f58e32b9ab70bc4385e60/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/ModFile.java#L123
@@ -33,8 +47,11 @@ minecraft {
             workingDirectory project.file('run')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
+
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=${project.mod_id}.mixins.json"
+
             mods {
                 modClientRun {
                     source sourceSets.main
@@ -46,8 +63,11 @@ minecraft {
             workingDirectory project.file('run')
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Server'
+
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=${mod_id}.mixins.json"
+
             mods {
                 modServerRun {
                     source sourceSets.main
@@ -60,8 +80,11 @@ minecraft {
             ideaModule "${rootProject.name}.${project.name}.main"
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             taskName 'Data'
+
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            arg "-mixin.config=${mod_id}.mixins.json"
+
             mods {
                 modDataRun {
                     source sourceSets.main
@@ -82,15 +105,27 @@ repositories {
     }
 
     maven {
-        name = 'BlameJared Maven (CrT / Bookshelf)'
-        url = 'https://maven.blamejared.com'
+        url 'https://maven.tterrag.com/'
+        content {
+            includeGroup "com.simibubi.create"
+            includeGroup "com.jozufozu.flywheel"
+            includeGroup "com.tterrag.registrate"
+        }
+    }
+    maven {
+        url "https://maven.theillusivec4.top"
+        content {
+            includeGroup "top.theillusivec4.caelus"
+        }
     }
 
-    maven { url 'https://jitpack.io' }
-    maven { url "https://dl.bintray.com/adriantodt/maven" }
-    maven { url "https://maven.jamieswhiteshirt.com/libs-release/" }
-    maven { url "https://maven.shedaniel.me/" }
-    maven { url 'https://ladysnake.jfrog.io/artifactory/mods' }
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.Virtuoel"
+        }
+    }
+
     maven {
         url "https://cursemaven.com"
         content {
@@ -102,6 +137,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    implementation fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     implementation fg.deobf("curse.maven:origins-474438:${origins_version}")
 
     implementation fg.deobf("com.github.Virtuoel:Pehkui:${pehkui_version}-${minecraft_version}-forge")
@@ -109,6 +145,12 @@ dependencies {
     //implementation fg.deobf("com.github.apace100:apoli:${apoli_version}") {
     //    exclude group: "com.terraformersmc"
     //}
+
+    implementation fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 
 jar {
@@ -126,7 +168,8 @@ jar {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'Timestampe'              : System.currentTimeMillis(),
                 'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
-                'Build-On-Minecraft'      : minecraft_version
+                'Build-On-Minecraft'      : minecraft_version,
+                "MixinConfigs"            : "${project.mod_id}.mixins.json",
         ])
     }
 }
@@ -137,4 +180,46 @@ sourcesJar {
     }
 }
 
-jar.finalizedBy('reobfJar')
+//jar.finalizedBy('reobfJar')
+
+
+def ENV = System.getenv()
+
+curseforge {
+    apiKey = ENV.CURSEFORGE_TOKEN
+    project {
+        id = project.curseforge_project_id
+        addGameVersion project.mc_version
+        addGameVersion 'Forge'
+        changelog = ENV.CHANGELOG
+        changelogType = 'markdown'
+        releaseType = project.release_type
+        mainArtifact(jar) {
+            displayName = "Version ${project.version}"
+        }
+        relations {
+            requiredDependency 'origins-forge'
+            optionalDependency 'create'
+            optionalDependency 'pehkui'
+        }
+    }
+}
+
+modrinth {
+    token = ENV.MODRINTH_TOKEN
+    projectId = project.modrinth_project_id
+    versionNumber = version
+    versionName = "Version ${project.version}"
+    changelog = ENV.CHANGELOG
+    gameVersions = [project.mc_version]
+    loaders = ["forge"]
+    versionType = project.release_type
+    uploadFile = jar
+    syncBodyFrom = project.file("README.md").text
+    dependencies {
+        optional.project "LNytGWDc"
+        optional.project "t5W7Jfwy"
+    }
+}
+
+tasks.modrinth.dependsOn(tasks.modrinthSyncBody)

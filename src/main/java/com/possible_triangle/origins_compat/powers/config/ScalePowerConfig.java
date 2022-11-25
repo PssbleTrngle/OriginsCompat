@@ -17,7 +17,6 @@ public record ScalePowerConfig(Optional<String> type, float size) implements IDy
             ).apply(builder, ScalePowerConfig::new)
     );
 
-
     public ScaleType getType() {
         var id = new ResourceLocation(type.orElse("pehkui:base"));
         return ScaleRegistries.getEntry(ScaleRegistries.SCALE_TYPES, id);

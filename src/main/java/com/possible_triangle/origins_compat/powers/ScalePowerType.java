@@ -1,5 +1,6 @@
 package com.possible_triangle.origins_compat.powers;
 
+import com.mojang.serialization.Codec;
 import com.possible_triangle.origins_compat.powers.config.ScalePowerConfig;
 import io.github.edwinmindcraft.apoli.api.power.factory.PowerFactory;
 import net.minecraft.world.entity.Entity;
@@ -7,8 +8,8 @@ import virtuoel.pehkui.api.ScaleData;
 
 public class ScalePowerType extends PowerFactory<ScalePowerConfig> {
 
-    public ScalePowerType() {
-        super(ScalePowerConfig.CODEC);
+    public ScalePowerType(Codec<ScalePowerConfig> codec) {
+        super(codec);
     }
 
     private ScaleData scaleData(ScalePowerConfig configuration, Entity entity) {

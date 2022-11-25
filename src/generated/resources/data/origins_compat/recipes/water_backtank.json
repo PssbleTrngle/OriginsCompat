@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APA",
+    "IBI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/zinc"
+    },
+    "A": {
+      "item": "create:andesite_alloy"
+    },
+    "P": {
+      "item": "create:fluid_pipe"
+    },
+    "B": {
+      "item": "create:zinc_block"
+    }
+  },
+  "result": {
+    "item": "origins_compat:water_backtank"
+  }
+}

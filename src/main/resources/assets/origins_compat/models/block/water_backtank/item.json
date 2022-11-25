@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/copper_backtank/item",
+  "textures": {
+    "0": "origins_compat:block/water_backtank",
+    "particle": "origins_compat:block/water_backtank"
+  }
+}

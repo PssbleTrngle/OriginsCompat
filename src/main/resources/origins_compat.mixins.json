@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.possible_triangle.origins_compat.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "origins_compat.refmap.json",
+  "mixins": [
+    "DivingHelmetMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

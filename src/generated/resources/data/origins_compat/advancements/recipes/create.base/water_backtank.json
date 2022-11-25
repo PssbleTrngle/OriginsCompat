@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "origins_compat:water_backtank"
+    ]
+  },
+  "criteria": {
+    "has_zinc": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/zinc"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "origins_compat:water_backtank"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_zinc",
+      "has_the_recipe"
+    ]
+  ]
+}

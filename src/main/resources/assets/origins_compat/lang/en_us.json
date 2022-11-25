@@ -1,0 +1,9 @@
+{
+  "item.origins_compat.water_backtank": "Water Backtank",
+  "item.origins_compat.water_backtank.tooltip": "WATER BACKTANK",
+  "item.origins_compat.water_backtank.tooltip.summary": "A _Wearable_ _Tank_ for carrying Water",
+  "item.origins_compat.water_backtank.tooltip.condition1": "When Worn",
+  "item.origins_compat.water_backtank.tooltip.behaviour1": "Provides _Water_ to for Water-Breathing players, wearing a diving helmet on land",
+  "item.origins_compat.water_backtank.tooltip.condition2": "When placed",
+  "item.origins_compat.water_backtank.tooltip.behaviour2": "_Collects_ _Water_ from a spout above."
+}
