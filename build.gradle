@@ -189,7 +189,7 @@ curseforge {
     apiKey = ENV.CURSEFORGE_TOKEN
     project {
         id = project.curseforge_project_id
-        addGameVersion project.mc_version
+        addGameVersion project.minecraft_version
         addGameVersion 'Forge'
         changelog = ENV.CHANGELOG
         changelogType = 'markdown'
@@ -211,7 +211,7 @@ modrinth {
     versionNumber = version
     versionName = "Version ${project.version}"
     changelog = ENV.CHANGELOG
-    gameVersions = [project.mc_version]
+    gameVersions = [project.minecraft_version]
     loaders = ["forge"]
     versionType = project.release_type
     uploadFile = jar
