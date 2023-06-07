@@ -1,13 +1,16 @@
 {
   "required": true,
   "package": "com.possible_triangle.origins_compat.mixins",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "refmap": "origins_compat.refmap.json",
+  "refmap": "${mod_id}.refmap.json",
   "mixins": [
     "DivingHelmetMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "HungerGuiMixin"
+  ]
 }

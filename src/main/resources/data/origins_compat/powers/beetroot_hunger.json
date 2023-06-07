@@ -1,0 +1,5 @@
+{
+  "type": "origins_compat:hunger_bar",
+  "texture": "origins_compat:textures/gui/hunger_icons.png",
+  "index": 1
+}

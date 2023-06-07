@@ -1,7 +1,7 @@
 package com.possible_triangle.origins_compat.mixins;
 
 import com.possible_triangle.origins_compat.OriginsCompat;
-import com.simibubi.create.content.curiosities.armor.DivingHelmetItem;
+import com.simibubi.create.content.equipment.armor.DivingHelmetItem;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class DivingHelmetMixin {
 
     @Inject(at = @At("HEAD"), cancellable = true, require = 0, method = "breatheUnderwater")
-    private static void stealAir(LivingEvent.LivingUpdateEvent event, CallbackInfo ci) {
-        var entity = event.getEntityLiving();
+    private static void stealAir(LivingEvent.LivingTickEvent event, CallbackInfo ci) {
+        var entity = event.getEntity();
         if (OriginsCompat.requiresWater(entity)) {
             ci.cancel();
         }

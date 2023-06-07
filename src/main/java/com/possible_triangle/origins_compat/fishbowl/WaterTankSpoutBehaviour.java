@@ -2,7 +2,7 @@ package com.possible_triangle.origins_compat.fishbowl;
 
 import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
 import com.simibubi.create.api.behaviour.BlockSpoutingBehaviour;
-import com.simibubi.create.content.contraptions.fluids.actors.SpoutTileEntity;
+import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
@@ -14,7 +14,7 @@ public class WaterTankSpoutBehaviour extends BlockSpoutingBehaviour {
     }
 
     @Override
-    public int fillBlock(Level world, BlockPos pos, SpoutTileEntity spout, FluidStack availableFluid, boolean simulate) {
+    public int fillBlock(Level world, BlockPos pos, SpoutBlockEntity spout, FluidStack availableFluid, boolean simulate) {
         return WaterBacktankTile.fillBySpout(world, pos, availableFluid.getFluid(), availableFluid.getAmount(), simulate);
     }
 

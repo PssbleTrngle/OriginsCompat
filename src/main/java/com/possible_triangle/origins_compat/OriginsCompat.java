@@ -3,6 +3,7 @@ package com.possible_triangle.origins_compat;
 import com.mojang.serialization.Codec;
 import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
 import com.possible_triangle.origins_compat.powers.EmptyPowerType;
+import com.possible_triangle.origins_compat.powers.HungerBarPowerType;
 import com.possible_triangle.origins_compat.powers.ScalePowerType;
 import com.possible_triangle.origins_compat.powers.config.ScalePowerConfig;
 import io.github.apace100.origins.power.OriginsPowerTypes;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +31,8 @@ public class OriginsCompat {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
     public static final DeferredRegister<PowerFactory<?>> POWERS = DeferredRegister.create(ApoliRegistries.POWER_FACTORY_KEY, MOD_ID);
+
+    public static final RegistryObject<HungerBarPowerType> HUNGER_BAR = POWERS.register("hunger_bar", HungerBarPowerType::new);
 
     static {
         POWERS.register("scale", optionalPower("pehkui", ScalePowerType::new, ScalePowerConfig.CODEC));

@@ -3,10 +3,10 @@ package com.possible_triangle.origins_compat.fishbowl.tile;
 import com.possible_triangle.origins_compat.OriginsCompat;
 import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
 import com.simibubi.create.AllSoundEvents;
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
-import com.simibubi.create.foundation.tileEntity.ComparatorUtil;
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
-import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
+import com.simibubi.create.foundation.blockEntity.ComparatorUtil;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class WaterBacktankTile extends SmartTileEntity implements Nameable {
+public class WaterBacktankTile extends SmartBlockEntity implements Nameable {
 
     private int capacityEnchantLevel;
     private int waterLevel;
@@ -43,12 +43,12 @@ public class WaterBacktankTile extends SmartTileEntity implements Nameable {
     }
 
     @Override
-    public void addBehaviours(List<TileEntityBehaviour> behaviours) {
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
 
     }
 
     public int getComparatorOutput() {
-        int max = BackTankUtil.maxAir(capacityEnchantLevel);
+        int max = BacktankUtil.maxAir(capacityEnchantLevel);
         return ComparatorUtil.fractionToRedstoneLevel(waterLevel / (float) max);
     }
 
@@ -77,7 +77,7 @@ public class WaterBacktankTile extends SmartTileEntity implements Nameable {
         enchantmentTag = compound.getList("Enchantments", Tag.TAG_COMPOUND);
         if (compound.contains("CustomName", 8))
             this.customName = Component.Serializer.fromJson(compound.getString("CustomName"));
-        if (prev != 0 && prev != waterLevel && waterLevel == BackTankUtil.maxAir(capacityEnchantLevel) && clientPacket)
+        if (prev != 0 && prev != waterLevel && waterLevel == BacktankUtil.maxAir(capacityEnchantLevel) && clientPacket)
             playFilledEffect();
     }
 
@@ -132,7 +132,7 @@ public class WaterBacktankTile extends SmartTileEntity implements Nameable {
 
         var tile = world.getBlockEntity(pos);
         if (tile instanceof WaterBacktankTile tank) {
-            int max = BackTankUtil.maxAir(tank.capacityEnchantLevel);
+            int max = BacktankUtil.maxAir(tank.capacityEnchantLevel);
             var amountFilled = Math.min(max - tank.waterLevel, perFill);
             if (!simulate) tank.setWaterLevel(tank.waterLevel + amountFilled);
             return amountFilled;

@@ -1,10 +1,10 @@
 package com.possible_triangle.origins_compat.fishbowl.block;
 
-import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
 import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
+import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
 import com.simibubi.create.AllEnchantments;
-import com.simibubi.create.content.contraptions.wrench.IWrenchable;
-import com.simibubi.create.foundation.block.ITE;
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
+import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -27,7 +27,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -38,12 +37,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.FakePlayer;
-import org.jetbrains.annotations.Nullable;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, SimpleWaterloggedBlock, IWrenchable {
+public class WaterBacktank extends Block implements IBE<WaterBacktankTile>, SimpleWaterloggedBlock, IWrenchable {
 
     private static final VoxelShape SHAPE = box(3, 0, 3, 13, 12, 13);
 
@@ -53,19 +51,13 @@ public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, Simp
 
 
     @Override
-    public BlockEntityType<? extends WaterBacktankTile> getTileEntityType() {
+    public BlockEntityType<WaterBacktankTile> getBlockEntityType() {
         return CreateCompat.WATER_BACKTANK_TILE.get();
     }
 
     @Override
-    public Class<WaterBacktankTile> getTileEntityClass() {
+    public Class<WaterBacktankTile> getBlockEntityClass() {
         return WaterBacktankTile.class;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return getTileEntityType().create(pos,  state);
     }
 
     @Override
@@ -75,7 +67,7 @@ public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, Simp
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED,  HORIZONTAL_FACING);
+        builder.add(WATERLOGGED, HORIZONTAL_FACING);
         super.createBlockStateDefinition(builder);
     }
 
@@ -85,7 +77,7 @@ public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, Simp
 
     @Override
     public int getAnalogOutputSignal(BlockState p_180641_1_, Level world, BlockPos pos) {
-        return getTileEntityOptional(world, pos).map(WaterBacktankTile::getComparatorOutput).orElse(0);
+        return getBlockEntityOptional(world, pos).map(WaterBacktankTile::getComparatorOutput).orElse(0);
     }
 
     @Override
@@ -108,7 +100,7 @@ public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, Simp
         super.setPlacedBy(world, pos, state, placer, stack);
         if (stack == null || stack.isEmpty()) return;
         if (world.isClientSide) return;
-        withTileEntityDo(world, pos, te -> {
+        withBlockEntityDo(world, pos, te -> {
             te.setCapacityEnchantLevel(EnchantmentHelper.getItemEnchantmentLevel(AllEnchantments.CAPACITY.get(), stack));
             te.setWaterLevel(stack.getOrCreateTag().getInt("Air"));
             if (stack.isEnchanted()) te.setEnchantmentTag(stack.getEnchantmentTags());
@@ -134,7 +126,7 @@ public class WaterBacktank extends Block implements ITE<WaterBacktankTile>, Simp
     @Override
     public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
         var stack = new ItemStack(CreateCompat.WATER_BACKTANK_ITEM.get());
-        var tile = getTileEntityOptional(world, pos);
+        var tile = getBlockEntityOptional(world, pos);
 
         int air = tile.map(WaterBacktankTile::getWaterLevel)
                 .orElse(0);

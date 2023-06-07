@@ -1,0 +1,11 @@
+// 1.19.2	2023-06-07T14:12:22.3325232	Registrate Provider for origins_compat [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+ece4dfa713578cd68c69add547539265ffb4ab19 assets/origins_compat/blockstates/water_backtank.json
+ebb32ff57b9b3b0cf577bca6cf27fdd52167983d assets/origins_compat/lang/en_ud.json
+0967010fb9b638603f622e56c07651e54c09165e assets/origins_compat/lang/en_us.json
+401e062005bcb2f2685e4565f036e604e9817d5b assets/origins_compat/models/item/water_backtank.json
+6c53b1a6ed28929b7a0a090edf6101e610f842fc assets/origins_compat/models/item/water_backtank_placeable.json
+43de7972b1f3a94649cc2775caf3c5d732542ea9 data/minecraft/tags/blocks/mineable/pickaxe.json
+aa14a50b6f4c9f592fcfd4f6d556ba9898227353 data/origins_compat/advancements/recipes/create.base/water_backtank.json
+0d913b3c1d37bd588d0c9625229c97c4e341c2b4 data/origins_compat/loot_tables/blocks/water_backtank.json
+e7a1318d00035674e47ad8b1b00e2b8bee9d7cd6 data/origins_compat/recipes/water_backtank.json
+43de7972b1f3a94649cc2775caf3c5d732542ea9 data/origins_compat/tags/items/water_source.json

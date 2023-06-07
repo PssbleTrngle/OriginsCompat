@@ -2,7 +2,7 @@ package com.possible_triangle.origins_compat.fishbowl;
 
 import com.possible_triangle.origins_compat.OriginsCompat;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,19 +29,19 @@ public class WaterTankUtil {
             entity.getPersistentData().remove("VisualBacktankAir");
         }
 
-        if (!AllItems.DIVING_HELMET.get().isWornBy(entity)) return;
+        if (!AllItems.COPPER_DIVING_HELMET.get().isWornBy(entity, false)) return;
 
         if (entity.isUnderWater()) return;
         if (entity instanceof Player player && player.isCreative()) return;
 
         var backtank = WaterTankUtil.getWaterSource(entity);
         if (backtank.isEmpty()) return;
-        if (BackTankUtil.getAir(backtank) <= 0) return;
+        if (BacktankUtil.getAir(backtank) <= 0) return;
 
         if (drowning) entity.setAirSupply(10);
 
         if (world.isClientSide) {
-            entity.getPersistentData().putInt("VisualBacktankAir", (int) BackTankUtil.getAir(backtank));
+            entity.getPersistentData().putInt("VisualBacktankAir", (int) BacktankUtil.getAir(backtank));
         }
 
         if (world.getGameTime() % 20 != 0) return;
@@ -54,7 +54,7 @@ public class WaterTankUtil {
 
         entity.setAirSupply(Math.min(entity.getMaxAirSupply(), entity.getAirSupply() + 10));
         entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 30, 0, true, false, true));
-        BackTankUtil.consumeAir(entity, backtank, 1);
+        BacktankUtil.consumeAir(entity, backtank, 1);
     }
 
 }
