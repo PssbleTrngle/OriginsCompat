@@ -1,7 +1,7 @@
 package com.possible_triangle.origins_compat;
 
 import com.mojang.serialization.Codec;
-import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
+import com.possible_triangle.origins_compat.compat.create.CreateCompat;
 import com.possible_triangle.origins_compat.powers.EmptyPowerType;
 import com.possible_triangle.origins_compat.powers.HungerBarPowerType;
 import com.possible_triangle.origins_compat.powers.ScalePowerType;

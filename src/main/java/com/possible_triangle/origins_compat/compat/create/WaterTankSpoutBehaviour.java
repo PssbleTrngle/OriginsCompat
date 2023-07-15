@@ -1,6 +1,6 @@
-package com.possible_triangle.origins_compat.fishbowl;
+package com.possible_triangle.origins_compat.compat.create;
 
-import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
+import com.possible_triangle.origins_compat.block.tile.WaterBacktankTile;
 import com.simibubi.create.api.behaviour.BlockSpoutingBehaviour;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import net.minecraft.core.BlockPos;

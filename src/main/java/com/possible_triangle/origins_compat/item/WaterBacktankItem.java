@@ -1,4 +1,4 @@
-package com.possible_triangle.origins_compat.fishbowl.item;
+package com.possible_triangle.origins_compat.item;
 
 import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;

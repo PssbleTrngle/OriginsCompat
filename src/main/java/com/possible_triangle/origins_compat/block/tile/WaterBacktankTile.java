@@ -1,7 +1,7 @@
-package com.possible_triangle.origins_compat.fishbowl.tile;
+package com.possible_triangle.origins_compat.block.tile;
 
 import com.possible_triangle.origins_compat.OriginsCompat;
-import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
+import com.possible_triangle.origins_compat.compat.create.CreateCompat;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.blockEntity.ComparatorUtil;

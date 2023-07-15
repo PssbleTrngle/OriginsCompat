@@ -1,8 +1,8 @@
-package com.possible_triangle.origins_compat.fishbowl.client;
+package com.possible_triangle.origins_compat.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.possible_triangle.origins_compat.OriginsCompat;
-import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
+import com.possible_triangle.origins_compat.compat.create.CreateCompat;
 import com.simibubi.create.foundation.gui.element.GuiGameElement;
 import com.simibubi.create.foundation.utility.Color;
 import com.simibubi.create.foundation.utility.Components;

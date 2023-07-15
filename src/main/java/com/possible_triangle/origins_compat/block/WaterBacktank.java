@@ -1,7 +1,7 @@
-package com.possible_triangle.origins_compat.fishbowl.block;
+package com.possible_triangle.origins_compat.block;
 
-import com.possible_triangle.origins_compat.fishbowl.CreateCompat;
-import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
+import com.possible_triangle.origins_compat.compat.create.CreateCompat;
+import com.possible_triangle.origins_compat.block.tile.WaterBacktankTile;
 import com.simibubi.create.AllEnchantments;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;

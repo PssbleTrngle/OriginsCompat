@@ -1,10 +1,11 @@
-package com.possible_triangle.origins_compat.fishbowl;
+package com.possible_triangle.origins_compat.compat.create;
 
 import com.possible_triangle.origins_compat.OriginsCompat;
-import com.possible_triangle.origins_compat.fishbowl.block.WaterBacktank;
-import com.possible_triangle.origins_compat.fishbowl.client.WaterTankOverlay;
-import com.possible_triangle.origins_compat.fishbowl.item.WaterBacktankItem;
-import com.possible_triangle.origins_compat.fishbowl.tile.WaterBacktankTile;
+import com.possible_triangle.origins_compat.api.WaterTankSources;
+import com.possible_triangle.origins_compat.block.WaterBacktank;
+import com.possible_triangle.origins_compat.block.tile.WaterBacktankTile;
+import com.possible_triangle.origins_compat.client.WaterTankOverlay;
+import com.possible_triangle.origins_compat.item.WaterBacktankItem;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.AllItems;
@@ -29,6 +30,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -43,6 +45,9 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateCompat {
 
@@ -67,10 +72,18 @@ public class CreateCompat {
         forgeBus.addListener(CreateCompat::onLivingUpdate);
 
         modBus.addListener(CreateCompat::registerOverlays);
+
+        WaterTankSources.addSupplier(entity -> {
+            List<ItemStack> stacks = new ArrayList<>();
+            for (ItemStack stack : entity.getArmorSlots())
+                if (stack.is(WATER_SOURCE)) stacks.add(stack);
+
+            return stacks;
+        });
     }
 
     public static void onLivingUpdate(LivingEvent.LivingTickEvent event) {
-        WaterTankUtil.onLivingTick(event.getEntity());
+        WaterTankTicker.onLivingTick(event.getEntity());
     }
 
     public static void registerOverlays(RegisterGuiOverlaysEvent event) {
