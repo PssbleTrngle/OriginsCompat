@@ -3,6 +3,7 @@ val mod_name: String by extra
 pluginManagement {
     repositories {
         gradlePluginPortal()
+        maven { url = uri("https://maven.architectury.dev/") }
         maven { url = uri("https://maven.minecraftforge.net/") }
         maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
 
@@ -13,3 +14,4 @@ pluginManagement {
 }
 
 rootProject.name = mod_name
+include("api", "common", "forge", "fabric")
