@@ -1,6 +1,8 @@
-package com.possible_triangle.origins_compat.forge.block;
+package com.possible_triangle.origins_compat.block;
 
-import com.possible_triangle.origins_compat.forge.compat.create.CreateCompat;
+import com.possible_triangle.origins_compat.CommonCreateCompat;
+import com.possible_triangle.origins_compat.Services;
+import com.possible_triangle.origins_compat.block.tile.WaterBacktankTile;
 import com.simibubi.create.AllEnchantments;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.IBE;
@@ -35,7 +37,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.FakePlayer;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -49,9 +50,10 @@ public class WaterBacktank extends Block implements IBE<WaterBacktankTile>, Simp
     }
 
 
+    @SuppressWarnings("unchecked")
     @Override
     public BlockEntityType<WaterBacktankTile> getBlockEntityType() {
-        return CreateCompat.WATER_BACKTANK_TILE.get();
+        return CommonCreateCompat.getWaterBacktankBlockEntity();
     }
 
     @Override
@@ -110,7 +112,7 @@ public class WaterBacktank extends Block implements IBE<WaterBacktankTile>, Simp
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (player == null) return InteractionResult.PASS;
-        if (player instanceof FakePlayer) return InteractionResult.PASS;
+        if (Services.PLATFORM.isFakePlayer(player)) return InteractionResult.PASS;
         if (player.isShiftKeyDown()) return InteractionResult.PASS;
         if (player.getMainHandItem().getItem() instanceof BlockItem) return InteractionResult.PASS;
         if (!player.getItemBySlot(EquipmentSlot.CHEST).isEmpty()) return InteractionResult.PASS;
@@ -124,7 +126,7 @@ public class WaterBacktank extends Block implements IBE<WaterBacktankTile>, Simp
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
-        var stack = new ItemStack(CreateCompat.WATER_BACKTANK_ITEM.get());
+        var stack = new ItemStack(CommonCreateCompat.getWaterBacktankItem());
         var tile = getBlockEntityOptional(world, pos);
 
         int water = tile.map(WaterBacktankTile::getWaterLevel).orElse(0);

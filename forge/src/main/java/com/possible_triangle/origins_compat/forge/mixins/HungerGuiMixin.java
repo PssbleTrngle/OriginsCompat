@@ -3,6 +3,7 @@ package com.possible_triangle.origins_compat.forge.mixins;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.possible_triangle.origins_compat.forge.powers.HungerBarPowerType;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,7 +15,7 @@ public class HungerGuiMixin {
 
     @Redirect(method = "renderFood", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/gui/overlay/ForgeGui;blit(Lcom/mojang/blaze3d/vertex/PoseStack;IIIIII)V"))
     private void injectRender(ForgeGui instance, PoseStack poseStack, int x, int y, int textureX, int textureY, int height, int width) {
-        var power = HungerBarPowerType.getPower();
+        var power = HungerBarPowerType.getPower(Minecraft.getInstance().player);
 
         power.ifPresentOrElse(config -> {
             RenderSystem.setShaderTexture(0, config.texture());

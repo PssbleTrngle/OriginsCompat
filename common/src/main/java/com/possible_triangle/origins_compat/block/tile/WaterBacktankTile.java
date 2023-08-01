@@ -1,8 +1,9 @@
-package com.possible_triangle.origins_compat.forge.block;
+package com.possible_triangle.origins_compat.block.tile;
 
+import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.Constants;
+import com.possible_triangle.origins_compat.Services;
 import com.possible_triangle.origins_compat.api.WaterTankSources;
-import com.possible_triangle.origins_compat.forge.compat.create.CreateCompat;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.foundation.blockEntity.ComparatorUtil;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
@@ -96,7 +97,7 @@ public class WaterBacktankTile extends SmartBlockEntity implements Nameable {
 
     @Override
     public Component getName() {
-        return Optional.ofNullable(customName).orElseGet(() -> CreateCompat.WATER_BACKTANK_ITEM.get().getDescription());
+        return Optional.ofNullable(customName).orElseGet(() -> CommonCreateCompat.getWaterBacktankItem().getDescription());
     }
 
     public int getWaterLevel() {

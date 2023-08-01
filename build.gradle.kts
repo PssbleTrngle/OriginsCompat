@@ -1,17 +1,5 @@
-val mc_version: String by extra
-val registrate_version: String by extra
-val create_version: String by extra
-val flywheel_version: String by extra
-val origins_version: String by extra
-val caelus_version: String by extra
-val pehkui_version: String by extra
-val apoli_version: String by extra
-val jei_version: String by extra
-val appleskin_version: String by extra
-val farmers_delight_version: String by extra
-
 plugins {
-    id("net.somethingcatchy.gradle") version("0.0.1")
+    id("net.somethingcatchy.gradle") version("0.0.4")
 }
 
 subprojects {
@@ -52,12 +40,32 @@ subprojects {
             content {
                 includeGroup("com.github.Virtuoel")
                 includeGroup("com.github.apace100")
+                includeGroup("com.github.DaFuqs")
             }
         }
         maven {
             url = uri("https://squiddev.cc/maven/")
             content {
                 includeGroup("org.squiddev")
+            }
+        }
+        maven {
+            url = uri("https://maven.shedaniel.me/")
+            content {
+                includeGroup("me.shedaniel.cloth")
+            }
+        }
+        maven {
+            url = uri("https://maven.ladysnake.org/releases")
+            content {
+                includeGroup("dev.onyxstudios.cardinal-components-api")
+                includeGroup("io.github.ladysnake")
+            }
+        }
+        maven {
+            url = uri("https://maven.terraformersmc.com/releases/")
+            content {
+                includeGroup("com.terraformersmc")
             }
         }
 

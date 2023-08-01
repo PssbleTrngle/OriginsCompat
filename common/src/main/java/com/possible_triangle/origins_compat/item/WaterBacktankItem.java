@@ -1,10 +1,10 @@
-package com.possible_triangle.origins_compat.forge.item;
+package com.possible_triangle.origins_compat.item;
 
 import com.possible_triangle.origins_compat.api.WaterTankSources;
-import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.simibubi.create.content.equipment.armor.BacktankItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,7 +13,7 @@ public class WaterBacktankItem extends BacktankItem {
     public static final int WATER_BAR_COLOR = 0x1979FF;
 
     public WaterBacktankItem(Properties properties, ItemEntry<BacktankBlockItem> placeable) {
-        super(AllArmorMaterials.COPPER, properties, Create.asResource("copper_diving"), placeable);
+        super(AllArmorMaterials.COPPER, properties, new ResourceLocation("create", "copper_diving"), placeable);
     }
 
     @Override

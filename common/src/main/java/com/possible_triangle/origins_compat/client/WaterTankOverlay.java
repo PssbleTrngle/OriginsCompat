@@ -1,6 +1,7 @@
 package com.possible_triangle.origins_compat.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.Services;
 import com.simibubi.create.foundation.gui.element.GuiGameElement;
 import com.simibubi.create.foundation.utility.Color;
@@ -32,7 +33,7 @@ public class WaterTankOverlay {
         poseStack.translate(width / 2 + 90, height - 53, 0);
 
         var text = Component.literal(StringUtil.formatTickDuration(timeLeft * 20));
-        GuiGameElement.of(Services.CREATE.getWaterTankItem()).at(0, 0).render(poseStack);
+        GuiGameElement.of(CommonCreateCompat.getWaterBacktankItem()).at(0, 0).render(poseStack);
 
         int color = 0xFF_FFFFFF;
 

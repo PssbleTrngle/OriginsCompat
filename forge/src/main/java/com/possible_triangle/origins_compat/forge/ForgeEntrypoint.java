@@ -1,18 +1,15 @@
 package com.possible_triangle.origins_compat.forge;
 
 import com.mojang.serialization.Codec;
-import com.possible_triangle.origins_compat.forge.compat.create.CreateCompat;
+import com.possible_triangle.origins_compat.CommonClass;
+import com.possible_triangle.origins_compat.Services;
 import com.possible_triangle.origins_compat.forge.powers.EmptyPowerType;
 import com.possible_triangle.origins_compat.forge.powers.HungerBarPowerType;
 import com.possible_triangle.origins_compat.forge.powers.ScalePowerType;
 import com.possible_triangle.origins_compat.forge.powers.config.ScalePowerConfig;
-import io.github.apace100.origins.power.OriginsPowerTypes;
 import io.github.edwinmindcraft.apoli.api.IDynamicFeatureConfiguration;
-import io.github.edwinmindcraft.apoli.api.component.IPowerContainer;
 import io.github.edwinmindcraft.apoli.api.power.factory.PowerFactory;
 import io.github.edwinmindcraft.apoli.api.registry.ApoliRegistries;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,8 +33,11 @@ public class ForgeEntrypoint {
 
     public ForgeEntrypoint() {
         POWERS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        if(ModList.get().isLoaded("create")) {
-            CreateCompat.init();
+
+        CommonClass.init();
+
+        if(Services.PLATFORM.isModLoaded("create")) {
+            ForgeCreateCompat.init();
         }
     }
 
@@ -46,11 +46,7 @@ public class ForgeEntrypoint {
     }
 
     public static <T> Supplier<T> optionalEntry(String requiredMod, Supplier<T> supplier, Supplier<T> empty) {
-        if (ModList.get().isLoaded(requiredMod)) return supplier;
+        if (Services.PLATFORM.isModLoaded(requiredMod)) return supplier;
         return empty;
-    }
-
-    public static boolean requiresWater(LivingEntity entity) {
-        return IPowerContainer.hasPower(entity, OriginsPowerTypes.WATER_BREATHING.get());
     }
 }

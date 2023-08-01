@@ -1,6 +1,5 @@
 package com.possible_triangle.origins_compat.forge.platform;
 
-import com.possible_triangle.origins_compat.forge.compat.create.CreateCompat;
 import com.possible_triangle.origins_compat.services.ICreateAccess;
 import com.simibubi.create.AllEnchantments;
 import com.simibubi.create.AllSoundEvents;
@@ -14,9 +13,7 @@ import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.fml.ModList;
 
 import java.util.Optional;
 
@@ -55,8 +52,4 @@ public class ForgeCreateAccess implements ICreateAccess {
         return DivingHelmetItem.isWornBy(entity);
     }
 
-    @Override
-    public Item getWaterTankItem() {
-        return CreateCompat.WATER_BACKTANK_ITEM.get();
-    }
 }

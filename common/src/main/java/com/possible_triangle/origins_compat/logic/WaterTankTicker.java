@@ -1,5 +1,6 @@
-package com.possible_triangle.origins_compat;
+package com.possible_triangle.origins_compat.logic;
 
+import com.possible_triangle.origins_compat.Services;
 import com.possible_triangle.origins_compat.api.WaterTankSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

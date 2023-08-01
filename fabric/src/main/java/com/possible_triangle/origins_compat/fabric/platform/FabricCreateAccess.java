@@ -2,7 +2,6 @@ package com.possible_triangle.origins_compat.fabric.platform;
 
 import com.possible_triangle.origins_compat.services.ICreateAccess;
 import com.simibubi.create.AllEnchantments;
-import com.simibubi.create.AllItems;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.equipment.armor.DivingHelmetItem;
 import com.simibubi.create.foundation.utility.Components;
@@ -14,8 +13,6 @@ import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.Optional;
@@ -55,8 +52,4 @@ public class FabricCreateAccess implements ICreateAccess {
         return DivingHelmetItem.isWornBy(entity, false);
     }
 
-    @Override
-    public Item getWaterTankItem() {
-        return Items.AIR;
-    }
 }
