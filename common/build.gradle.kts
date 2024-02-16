@@ -17,3 +17,6 @@ dependencies {
 
     modCompileOnly("com.simibubi.create:create-fabric-${mc_version}:${create_fabric_version}")
 }
+
+// Needed for some reason
+tasks.register("prepareWorkspace")
