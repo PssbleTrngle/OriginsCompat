@@ -32,7 +32,7 @@ public record HungerBarPowerConfig(
         var path = texture.getPath();
         var extension = FilenameUtils.getExtension(path);
         var name = FilenameUtils.removeExtension(path);
-        return new ResourceLocation(texture.getNamespace(), name + with + extension);
+        return new ResourceLocation(texture.getNamespace(), name + with + "." + extension);
     }
 
     public ResourceLocation nourishmentTexture() {
