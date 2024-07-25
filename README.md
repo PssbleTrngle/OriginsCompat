@@ -6,15 +6,13 @@
 
 [MODRINTH]: https://modrinth.com/mod/origins-compat
 
-# Origins Compat <!-- modrinth_exclude.start --> <img src="https://raw.githubusercontent.com/PssbleTrngle/OriginsCompat/1.19/common/src/main/resources/assets/data_trades/icon.svg" align="right" height="128" />
+# Origins Compat
 
 [![Release](https://img.shields.io/github/v/release/PssbleTrngle/OriginsCompat?label=Version&sort=semver)][DOWNLOAD]
 [![Downloads](https://cf.way2muchnoise.eu/full_711560_downloads.svg)][CURSEFORGE]
 [![Version](https://cf.way2muchnoise.eu/versions/711560.svg)][DOWNLOAD]
 [![Issues](https://img.shields.io/github/issues/PssbleTrngle/OriginsCompat?label=Issues)][ISSUES]
 [![Modrinth](https://img.shields.io/modrinth/dt/xtXAknNA?color=green&logo=modrinth&logoColor=green)][MODRINTH]
-
-<!-- modrinth_exclude.end -->
 
 ## Features
 
