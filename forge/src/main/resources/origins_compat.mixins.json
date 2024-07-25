@@ -10,8 +10,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "client": [
-    "FoodTooltipRendererMixin",
-    "HungerGuiMixin"
-  ]
+  "client": ["FoodTooltipRendererMixin", "HudOverlayHandlerMixin", "HungerGuiMixin"]
 }

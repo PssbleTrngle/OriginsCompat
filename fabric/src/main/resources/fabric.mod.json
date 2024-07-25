@@ -3,7 +3,7 @@
   "id": "${mod_id}",
   "version": "${mod_version}",
   "name": "${mod_name}",
-  "description": "Skygrid",
+  "description": "Bridges same gaps between the origins mod and others",
   "authors": [
     "${mod_author}"
   ],

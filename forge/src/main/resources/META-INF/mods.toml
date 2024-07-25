@@ -7,7 +7,7 @@ license = 'LGPL'
     version = "${mod_version}"
     displayName = "${mod_name}"
     authors = "${mod_author}"
-    description = ''''''
+    description = '''Bridges same gaps between the origins mod and others'''
 
 [[dependencies.${mod_id}]]
     modId = "forge"

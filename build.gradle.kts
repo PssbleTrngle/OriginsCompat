@@ -1,5 +1,5 @@
 plugins {
-    id("net.somethingcatchy.gradle") version("0.0.4")
+    id("com.possible-triangle.gradle") version("0.1.5")
 }
 
 subprojects {
@@ -73,8 +73,6 @@ subprojects {
     }
 
     enablePublishing {
-        repositories {
-            githubPackages(project)
-        }
+        githubPackages()
     }
 }
