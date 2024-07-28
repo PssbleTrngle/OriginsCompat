@@ -73,10 +73,6 @@ public class WaterBacktank extends Block implements IBE<WaterBacktankTile>, Simp
     }
 
     @Override
-    public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
-    }
-
-    @Override
     public int getAnalogOutputSignal(BlockState p_180641_1_, Level world, BlockPos pos) {
         return getBlockEntityOptional(world, pos).map(WaterBacktankTile::getComparatorOutput).orElse(0);
     }

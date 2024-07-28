@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
         maven { url = uri("https://maven.architectury.dev/") }
         maven { url = uri("https://maven.minecraftforge.net/") }
+        maven { url = uri("https://maven.neoforged.net/releases/") }
         maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
 
         System.getenv()["LOCAL_MAVEN"]?.let { localMaven ->

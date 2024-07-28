@@ -13,7 +13,7 @@ public class WaterTankTicker {
     public static void onLivingTick(LivingEntity entity) {
         if (!Services.ORIGINS.requiresWater(entity)) return;
 
-        Level world = entity.level;
+        Level world = entity.level();
         boolean drowning = entity.getAirSupply() == 0;
 
         var persistentData = Services.PLATFORM.persistentData(entity);

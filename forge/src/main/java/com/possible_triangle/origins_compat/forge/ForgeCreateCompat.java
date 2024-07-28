@@ -4,6 +4,7 @@ import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.client.WaterTankOverlay;
 import com.possible_triangle.origins_compat.forge.logic.WaterTankSpoutBehaviour;
 import com.possible_triangle.origins_compat.logic.WaterTankTicker;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -15,7 +16,8 @@ import static com.possible_triangle.origins_compat.Constants.MOD_ID;
 
 public class ForgeCreateCompat {
 
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
+            .setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
 
     public static void init() {
         WaterTankSpoutBehaviour.register();
@@ -35,8 +37,8 @@ public class ForgeCreateCompat {
     }
 
     public static void registerOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.AIR_LEVEL.id(), "remaining_water", (gui, poseStack, partialTick, width, height) -> {
-            WaterTankOverlay.renderRemainingWaterOverlay(poseStack, width, height);
+        event.registerAbove(VanillaGuiOverlay.AIR_LEVEL.id(), "remaining_water", (gui, graphics, partialTick, width, height) -> {
+            WaterTankOverlay.renderRemainingWaterOverlay(graphics, width, height);
         });
     }
 

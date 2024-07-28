@@ -35,7 +35,7 @@ dependencies {
 
     modImplementation("net.fabricmc.fabric-api:fabric-transfer-api-v1:${fabric_api_version}")
 
-    modImplementation("com.github.Virtuoel:Pehkui:${pehkui_version}") {
+    modImplementation("com.github.virtuoel:Pehkui:${pehkui_version}") {
         withoutFabricApi()
     }
 

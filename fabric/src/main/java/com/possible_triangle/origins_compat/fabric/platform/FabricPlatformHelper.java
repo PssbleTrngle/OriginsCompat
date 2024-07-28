@@ -1,6 +1,7 @@
 package com.possible_triangle.origins_compat.fabric.platform;
 
 import com.possible_triangle.origins_compat.services.IPlatformHelper;
+import net.fabricmc.fabric.api.entity.FakePlayer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,11 +16,11 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public CompoundTag persistentData(LivingEntity entity) {
-        return entity.getExtraCustomData();
+        return entity.getCustomData();
     }
 
     @Override
     public boolean isFakePlayer(Player player) {
-        return player.isFake();
+        return player instanceof FakePlayer;
     }
 }

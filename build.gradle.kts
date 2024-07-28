@@ -1,5 +1,5 @@
 plugins {
-    id("com.possible-triangle.gradle") version("0.1.5")
+    id("com.possible-triangle.gradle") version ("0.2.0")
 }
 
 subprojects {
@@ -7,7 +7,7 @@ subprojects {
         mavenCentral()
         curseMaven()
         modrinthMaven()
-        
+
         maven {
             url = uri("https://repo.spongepowered.org/repository/maven-public/")
             content {
@@ -39,6 +39,7 @@ subprojects {
             url = uri("https://jitpack.io")
             content {
                 includeGroup("com.github.Virtuoel")
+                includeGroup("com.github.virtuoel")
                 includeGroup("com.github.apace100")
                 includeGroup("com.github.DaFuqs")
             }
@@ -66,6 +67,18 @@ subprojects {
             url = uri("https://maven.terraformersmc.com/releases/")
             content {
                 includeGroup("com.terraformersmc")
+            }
+        }
+        maven {
+            url = uri("https://maven.quiltmc.org/repository/release")
+            content {
+                includeGroup("org.quiltmc.parsers")
+            }
+        }
+        maven {
+            url = uri("https://maven.squiddev.cc")
+            content {
+                includeGroup("cc.tweaked")
             }
         }
 

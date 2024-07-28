@@ -7,7 +7,8 @@ val flywheel_version: String by extra
 val origins_forge_version: String by extra
 val caelus_version: String by extra
 val pehkui_version: String by extra
-val apoli_version: String by extra
+val apoli_forge_version: String by extra
+val calio_forge_version: String by extra
 val jei_version: String by extra
 val appleskin_version: String by extra
 val farmers_delight_version: String by extra
@@ -33,10 +34,12 @@ dependencies {
     modImplementation("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     modImplementation("curse.maven:origins-474438:${origins_forge_version}")
 
-    modImplementation("com.github.Virtuoel:Pehkui:${pehkui_version}-${mc_version}-forge")
+    modImplementation("com.github.virtuoel:Pehkui:${pehkui_version}-${mc_version}-forge")
 
-    //implementation fg.deobf("com.github.apace100:apoli:${apoli_version}")
-    compileOnly(fg.deobf(rootProject.fileTree("libs")))
+    //compileOnly(fg.deobf(rootProject.fileTree("libs")))
+
+    modCompileOnly("curse.maven:apoli-975561:${apoli_forge_version}")
+    modCompileOnly("curse.maven:calio-977891:${calio_forge_version}")
 
     modImplementation("com.simibubi.create:create-${mc_version}:${create_forge_version}:slim")
     modImplementation("com.jozufozu.flywheel:flywheel-forge-${mc_version}:${flywheel_version}")
