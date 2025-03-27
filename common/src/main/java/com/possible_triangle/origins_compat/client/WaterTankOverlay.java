@@ -2,8 +2,8 @@ package com.possible_triangle.origins_compat.client;
 
 import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.Services;
-import com.simibubi.create.foundation.gui.element.GuiGameElement;
-import com.simibubi.create.foundation.utility.Color;
+import net.createmod.catnip.gui.element.GuiGameElement;
+import net.createmod.catnip.theme.Color;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;

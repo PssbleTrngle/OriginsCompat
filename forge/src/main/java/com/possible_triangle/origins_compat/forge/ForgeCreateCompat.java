@@ -2,9 +2,7 @@ package com.possible_triangle.origins_compat.forge;
 
 import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.client.WaterTankOverlay;
-import com.possible_triangle.origins_compat.forge.logic.WaterTankSpoutBehaviour;
 import com.possible_triangle.origins_compat.logic.WaterTankTicker;
-import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -16,12 +14,9 @@ import static com.possible_triangle.origins_compat.Constants.MOD_ID;
 
 public class ForgeCreateCompat {
 
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
-            .setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
     public static void init() {
-        WaterTankSpoutBehaviour.register();
-
         var forgeBus = MinecraftForge.EVENT_BUS;
         var modBus = FMLJavaModLoadingContext.get().getModEventBus();
 

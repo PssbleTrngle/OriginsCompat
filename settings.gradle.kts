@@ -1,5 +1,3 @@
-val mod_name: String by extra
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -7,12 +5,7 @@ pluginManagement {
         maven { url = uri("https://maven.minecraftforge.net/") }
         maven { url = uri("https://maven.neoforged.net/releases/") }
         maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
-
-        System.getenv()["LOCAL_MAVEN"]?.let { localMaven ->
-            maven { url = uri(localMaven) }
-        }
     }
 }
 
-rootProject.name = mod_name
 include("api", "common", "forge", "fabric")

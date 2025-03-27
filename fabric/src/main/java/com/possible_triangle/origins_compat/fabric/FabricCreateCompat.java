@@ -2,9 +2,7 @@ package com.possible_triangle.origins_compat.fabric;
 
 import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.client.WaterTankOverlay;
-import com.possible_triangle.origins_compat.fabric.logic.WaterTankSpoutBehaviour;
 import com.possible_triangle.origins_compat.logic.WaterTankTicker;
-import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import io.github.fabricators_of_create.porting_lib.entity.events.PlayerTickEvents;
 import io.github.fabricators_of_create.porting_lib.event.client.OverlayRenderCallback;
@@ -13,12 +11,9 @@ import static com.possible_triangle.origins_compat.Constants.MOD_ID;
 
 public class FabricCreateCompat {
 
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID)
-            .setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB.key());
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
 
     public static void init() {
-        WaterTankSpoutBehaviour.register();
-
         CommonCreateCompat.register(REGISTRATE);
         REGISTRATE.register();
 

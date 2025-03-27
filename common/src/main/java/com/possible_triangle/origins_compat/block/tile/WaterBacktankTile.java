@@ -2,13 +2,12 @@ package com.possible_triangle.origins_compat.block.tile;
 
 import com.possible_triangle.origins_compat.CommonCreateCompat;
 import com.possible_triangle.origins_compat.Constants;
-import com.possible_triangle.origins_compat.Services;
 import com.possible_triangle.origins_compat.api.WaterTankSources;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.foundation.blockEntity.ComparatorUtil;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.utility.VecHelper;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
