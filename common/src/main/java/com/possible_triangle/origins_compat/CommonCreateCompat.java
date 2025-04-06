@@ -6,28 +6,32 @@ import com.possible_triangle.origins_compat.block.tile.WaterBacktankTile;
 import com.possible_triangle.origins_compat.item.WaterBacktankItem;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.equipment.armor.BacktankItem;
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.simibubi.create.foundation.data.TagGen;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
-import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -40,6 +44,8 @@ import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 public class CommonCreateCompat {
+
+    private static final ResourceKey<CreativeModeTab> TAB = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Create.asResource("base"));
 
     private static final TagKey<Item> ZINC_INGOT = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ingots/zinc"));
 
@@ -61,7 +67,7 @@ public class CommonCreateCompat {
     public static void register(CreateRegistrate registrate) {
         registrate
                 .setTooltipModifierFactory(it ->
-                        new ItemDescription.Modifier(it, TooltipHelper.Palette.STANDARD_CREATE)
+                        new ItemDescription.Modifier(it, FontHelper.Palette.STANDARD_CREATE)
                                 .andThen(TooltipModifier.mapNull(KineticStats.create(it)))
                 );
 
@@ -71,13 +77,18 @@ public class CommonCreateCompat {
                 .blockstate((c, p) -> p.horizontalBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
                 .transform(TagGen.pickaxeOnly())
                 .addLayer(() -> RenderType::cutoutMipped)
-                .transform(BlockStressDefaults.setImpact(4.0))
                 .loot(CommonCreateCompat::backTankLoot)
                 .register();
 
         WATER_BACKTANK_ITEM = registrate.item("water_backtank", p -> new WaterBacktankItem(p, WATER_BACKTANK_PLACEABLE))
                 .model(AssetLookup.customGenericItemModel("_", "item"))
+                .properties(p -> p.durability(-1))
                 .tag(OriginsCompatTags.WATER_SOURCE)
+                .transform(it -> it.tab(TAB, tab -> {
+                    var stack = new ItemStack(it.getEntry());
+                    stack.getOrCreateTag().putInt("Water", BacktankUtil.maxAirWithoutEnchants());
+                    tab.accept(stack);
+                }))
                 .recipe((c, p) -> new ShapedRecipeBuilder(RecipeCategory.TOOLS, c.get(), 1)
                         .pattern("APA")
                         .pattern("IBI")
@@ -98,9 +109,10 @@ public class CommonCreateCompat {
 
         WATER_BACKTANK_TILE = registrate
                 .blockEntity("copper_backtank", WaterBacktankTile::new)
-                //.instance(() -> CopperBacktankInstance::new)
+                //  .visual(() -> SingleAxisRotatingVisual::backtank)
                 .validBlocks(WATER_BACKTANK_BLOCK)
-                //.renderer(() -> CopperBacktankRenderer::new)
+                // TODO   .renderer(() -> BacktankRenderer::new)
+                .onRegister(Services.CREATE::registerSpoutBehaviour)
                 .register();
     }
 

@@ -1,10 +1,11 @@
 plugins {
-    id("com.possible-triangle.gradle") version ("0.2.1")
+    id("com.possible-triangle.gradle") version ("0.2.5")
 }
 
 subprojects {
     repositories {
         mavenCentral()
+        mavenLocal()
         curseMaven()
         modrinthMaven()
 
@@ -23,9 +24,15 @@ subprojects {
         maven {
             url = uri("https://maven.tterrag.com/")
             content {
-                includeGroup("com.simibubi.create")
-                includeGroup("com.jozufozu.flywheel")
                 includeGroup("com.tterrag.registrate")
+            }
+        }
+        maven {
+            url = uri("https://maven.createmod.net")
+            content {
+                includeGroup("com.simibubi.create")
+                includeGroup("net.createmod.ponder")
+                includeGroup("dev.engine-room.flywheel")
             }
         }
         maven {

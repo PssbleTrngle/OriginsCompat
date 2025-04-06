@@ -7,6 +7,7 @@ import com.possible_triangle.origins_compat.forge.powers.EmptyPowerType;
 import com.possible_triangle.origins_compat.forge.powers.HungerBarPowerType;
 import com.possible_triangle.origins_compat.forge.powers.ScalePowerType;
 import com.possible_triangle.origins_compat.forge.powers.config.ScalePowerConfig;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import io.github.edwinmindcraft.apoli.api.IDynamicFeatureConfiguration;
 import io.github.edwinmindcraft.apoli.api.power.factory.PowerFactory;
 import io.github.edwinmindcraft.apoli.api.registry.ApoliRegistries;
